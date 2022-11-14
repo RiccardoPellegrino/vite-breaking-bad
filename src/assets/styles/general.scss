@@ -6,3 +6,11 @@ $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    background-color: $bg-color;
+}
+
+img {
+    max-width: 100%;
+}
