@@ -1,5 +1,7 @@
 <template>
+
     <CardComponent :characters="characterList" />
+
 </template>
 
 <script>
