@@ -1,7 +1,10 @@
 <template>
-
-    <CardComponent :characters="characterList" :loading="loading" />
-
+    <section class="container card-container">
+        <div class="container mt-4 mb-2">
+            <div v-html="`Found ${characterList.length} characters`" class="found fw-bold"></div>
+        </div>
+        <CardComponent :characters="characterList" :loading="loading" />
+    </section>
 </template>
 
 <script>

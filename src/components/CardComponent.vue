@@ -4,7 +4,6 @@
             Sto caricando i dati
         </div>
         <div class="row justify-content-center contenitore" v-if="!loading">
-            <div class="bg-secondary">Found 62 characters</div>
             <div class="col col-2 m-3" v-for="(item, index) in characters" :key="item.char_id">
                 <div class="character p-3 text-center">
                     <img :src="item.img" :alt="item.name">
