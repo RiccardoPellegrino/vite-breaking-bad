@@ -1,5 +1,5 @@
 <template>
-    <section class="container card-container">
+    <section class="container card-container bg-white">
         <div class="container mt-4 mb-2">
             <div v-html="`Found ${characterList.length} characters`" class="found fw-bold"></div>
         </div>
