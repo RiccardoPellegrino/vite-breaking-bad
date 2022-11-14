@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="row contenitore">
+        <div v-if="loading" class="d-flex justify-content-center fw-bold display-4 mt-4">
+            Sto caricando i dati
+        </div>
+        <div class="row justify-content-center contenitore" v-if="!loading">
             <div class="bg-secondary">Found 62 characters</div>
             <div class="col col-2 m-3" v-for="(item, index) in characters" :key="item.char_id">
                 <div class="character p-3 text-center">
@@ -17,7 +20,7 @@
 <script>
 export default {
     name: 'CardComponent',
-    props: ['characters']
+    props: ['characters', 'loading']
 }
 </script>
 

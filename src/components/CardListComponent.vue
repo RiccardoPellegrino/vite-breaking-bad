@@ -1,6 +1,6 @@
 <template>
 
-    <CardComponent :characters="characterList" />
+    <CardComponent :characters="characterList" :loading="loading" />
 
 </template>
 
@@ -15,19 +15,20 @@ export default {
         return {
             apiURL: 'https://www.breakingbadapi.com/api/characters',
             characterList: [],
+            loading: false
             // cinque: [],
         }
     },
     methods: {
         //chiamata per api come metodo
         getCharacters() {
-            // this.loading = true;
+            this.loading = true;
             axios.get(this.apiURL).then(
                 (res) => {
                     console.log(res.data)
                     this.characterList = [...res.data]
                     console.log(this.characterList)
-                    // this.loading = false;
+                    this.loading = false;
                 },//success
 
             )
