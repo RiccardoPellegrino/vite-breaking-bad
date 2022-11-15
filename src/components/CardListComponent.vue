@@ -3,12 +3,12 @@
     <section class="container card-container bg-white">
         <div class="pt-3">
             <div class="container mt-2 mb-2">
-                <div v-html="`Found ${characterList.length} characters`"
+                <div v-html="`Found ${store.characterList.length} characters`"
                     class="foundCharacter fw-bold bg-dark text-white ">
                 </div>
             </div>
         </div>
-        <CardComponent :characters="characterList" :loading="loading" />
+        <CardComponent :characters="store.characterList" :loading="store.loading" />
     </section>
 </template>
 
@@ -16,6 +16,7 @@
 import axios from 'axios'
 import CardComponent from './CardComponent.vue'
 import SearchBarComponent from './SearchBarComponent.vue'
+import { store } from '../store';
 export default {
     components: {
         CardComponent,
@@ -25,9 +26,8 @@ export default {
     data() {
 
         return {
-            apiURL: 'https://www.breakingbadapi.com/api/characters',
-            characterList: [],
-            loading: false
+            store,
+            endPoint: '/characters'
             // cinque: [],
         }
     },
@@ -43,13 +43,14 @@ export default {
                     }
                 }
             }
-            this.loading = true;
-            axios.get(this.apiURL, option).then(
+            store.loading = true;
+            const url = store.apiURL + this.endPoint
+            axios.get(url, option).then(
                 (res) => {
                     console.log(res.data)
-                    this.characterList = [...res.data]
-                    console.log(this.characterList)
-                    this.loading = false;
+                    store.characterList = [...res.data]
+                    console.log(store.characterList)
+                    store.loading = false;
                 },//success
 
             )
