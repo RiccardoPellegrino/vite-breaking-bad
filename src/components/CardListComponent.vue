@@ -1,7 +1,12 @@
 <template>
+    <SearchBarComponent @filterChar="getCharacters" />
     <section class="container card-container bg-white">
-        <div class="container mt-4 mb-2">
-            <div v-html="`Found ${characterList.length} characters`" class="found fw-bold"></div>
+        <div class="pt-3">
+            <div class="container mt-2 mb-2">
+                <div v-html="`Found ${characterList.length} characters`"
+                    class="foundCharacter fw-bold bg-dark text-white ">
+                </div>
+            </div>
         </div>
         <CardComponent :characters="characterList" :loading="loading" />
     </section>
@@ -10,8 +15,12 @@
 <script>
 import axios from 'axios'
 import CardComponent from './CardComponent.vue'
+import SearchBarComponent from './SearchBarComponent.vue'
 export default {
-    components: { CardComponent },
+    components: {
+        CardComponent,
+        SearchBarComponent
+    },
     name: 'CardListComponent',
     data() {
 
@@ -24,9 +33,18 @@ export default {
     },
     methods: {
         //chiamata per api come metodo
-        getCharacters() {
+        getCharacters(category) {
+
+            let option = null;
+            if (category) {
+                option = {
+                    params: {
+                        category: category,
+                    }
+                }
+            }
             this.loading = true;
-            axios.get(this.apiURL).then(
+            axios.get(this.apiURL, option).then(
                 (res) => {
                     console.log(res.data)
                     this.characterList = [...res.data]
@@ -55,5 +73,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.foundCharacter {
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
 </style>
