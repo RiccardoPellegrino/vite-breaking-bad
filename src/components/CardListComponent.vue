@@ -3,9 +3,7 @@
     <section class="container card-container bg-white">
         <div class="pt-3">
             <div class="container mt-2 mb-2">
-                <div v-html="`Found ${store.characterList.length} characters`"
-                    class="foundCharacter fw-bold bg-dark text-white ">
-                </div>
+                <CounterComponent />
             </div>
         </div>
         <CardComponent :characters="store.characterList" :loading="store.loading" />
@@ -17,10 +15,12 @@ import axios from 'axios'
 import CardComponent from './CardComponent.vue'
 import SearchBarComponent from './SearchBarComponent.vue'
 import { store } from '../store';
+import CounterComponent from './CounterComponent.vue';
 export default {
     components: {
         CardComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        CounterComponent
     },
     name: 'CardListComponent',
     data() {
